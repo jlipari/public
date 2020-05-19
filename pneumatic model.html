@@ -13084,7 +13084,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[139]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
@@ -13106,7 +13106,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>IPython console for SymPy 1.4 (Python 3.7.4-64-bit) (ground types: gmpy)
+<pre>IPython console for SymPy 1.4 (Python 3.7.4-64-bit) (ground types: python)
 
 These commands were executed:
 &gt;&gt;&gt; from __future__ import division
@@ -13128,7 +13128,7 @@ Documentation can be found at https://docs.sympy.org/1.4/
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[192]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;Simple Model</span>
@@ -13180,7 +13180,7 @@ $\displaystyle - b v{\left(t \right)} - m \frac{d}{d t} v{\left(t \right)} + F{\
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[192]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -13197,7 +13197,7 @@ $\displaystyle v{\left(t \right)} = \left(C_{1} + \frac{\int F{\left(t \right)} 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[141]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># &#39;&#39;&#39;solve numerically</span>
@@ -13228,34 +13228,33 @@ $\displaystyle v{\left(t \right)} = \left(C_{1} + \frac{\int F{\left(t \right)} 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;in actuality the volume of the tank will effect the dynamics</span>
 <span class="sd">assume constant temp</span>
 <span class="sd">&#39;&#39;&#39;</span>
-<span class="kn">from</span> <span class="nn">pint</span> <span class="k">import</span> <span class="n">UnitRegistry</span>
-<span class="n">ureg</span> <span class="o">=</span> <span class="n">UnitRegistry</span><span class="p">()</span>
+<span class="c1"># from pint import UnitRegistry</span>
+<span class="c1"># ureg = UnitRegistry()</span>
 
 <span class="n">n</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">T</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;n, r, T&#39;</span><span class="p">)</span>
 <span class="n">V</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;V, P&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">Function</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ideal gas law&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">P</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
-
-<span class="c1">#calculate the adiabatic constant</span>
-<span class="n">D_tank</span> <span class="o">=</span> <span class="mf">2.5</span><span class="o">*</span><span class="mi">12</span>
-<span class="n">L_tank</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="mi">12</span>
-<span class="n">V_tank</span> <span class="o">=</span> <span class="n">D_tank</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="o">*</span><span class="n">L_tank</span><span class="o">*</span><span class="n">ureg</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mi">3</span>
-<span class="n">V_tank</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">ureg</span><span class="o">.</span><span class="n">meter</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">P_tank</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">ureg</span><span class="o">.</span><span class="n">lbf</span><span class="o">/</span><span class="n">ureg</span><span class="o">.</span><span class="n">inch</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">P_tank</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">ureg</span><span class="o">.</span><span class="n">newton</span><span class="o">/</span><span class="n">ureg</span><span class="o">.</span><span class="n">meter</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">K_tank</span> <span class="o">=</span> <span class="n">P_tank</span><span class="o">*</span><span class="n">V_tank</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;adiabatic constant&quot;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">K_tank</span><span class="p">)</span>
-<span class="n">K_adiabatic</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;K_adiabatic&#39;</span><span class="p">)</span>
+<span class="n">K_a</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;K_a&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 2:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">P</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">K_adiabatic</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">P</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">K_a</span><span class="p">)</span>
+
+<span class="c1"># #calculate the a constant</span>
+<span class="c1"># D_tank = 2.5*12</span>
+<span class="c1"># L_tank = 4*12</span>
+<span class="c1"># V_tank = D_tank**2*np.pi/4*L_tank*ureg.inch**3</span>
+<span class="c1"># V_tank.to(ureg.meter**3)</span>
+<span class="c1"># P_tank = 100*ureg.lbf/ureg.inch**2</span>
+<span class="c1"># P_tank.to(ureg.newton/ureg.meter**2)</span>
+<span class="c1"># K_tank = P_tank*V_tank</span>
+<span class="c1"># print(&quot;a constant&quot;)</span>
+<span class="c1"># display(K_tank)</span>
 
 <span class="c1">#Actuator volume</span>
 <span class="n">D_bore</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;D_bore&#39;</span><span class="p">)</span>
@@ -13307,29 +13306,6 @@ $\displaystyle - T n r + P{\left(t \right)} V{\left(t \right)}$
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>adiabatic constant
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-\[3392920.065876977\ force\_pound\ inch\]
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
 <pre>eqn 2:
 </pre>
 </div>
@@ -13343,7 +13319,7 @@ $\displaystyle - T n r + P{\left(t \right)} V{\left(t \right)}$
 
 
 <div class="output_latex output_subarea ">
-$\displaystyle - K_{adiabatic} + P{\left(t \right)} V{\left(t \right)}$
+$\displaystyle - K_{a} + P{\left(t \right)} V{\left(t \right)}$
 </div>
 
 </div>
@@ -13385,7 +13361,7 @@ $\displaystyle - A_{bore} v{\left(t \right)} + \frac{d}{d t} V{\left(t \right)}$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[184]:</div>
+    <div class="prompt output_prompt">Out[57]:</div>
 
 
 
@@ -13402,36 +13378,44 @@ $\displaystyle - A_{bore} P{\left(t \right)} + F{\left(t \right)}$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;we want F(t) in our original equation to be in terms of v(t)&#39;&#39;&#39;</span>
 
-<span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-
 <span class="c1">#sub 2 into 4&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 5:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">K_adiabatic</span><span class="o">/</span><span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">K_a</span><span class="o">/</span><span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
 
 <span class="c1">#integrate 3</span>
+<span class="c1">#tank initial Volume</span>
+<span class="n">Vo</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;Vo&#39;</span><span class="p">)</span>
+<span class="c1">#actuator initial position</span>
+<span class="n">xo</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;xo&#39;</span><span class="p">)</span>
+<span class="c1">#but initial position we will call zero</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 6:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="c1">#I&#39;m skeptical of this equation because we should be seeing V(t) = Vo + A*x(t)</span>
+<span class="n">display</span><span class="p">(</span><span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span><span class="n">Vo</span><span class="p">)</span>
 
 <span class="c1">#sub 6 into 5</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 7:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">K_adiabatic</span><span class="o">/</span><span class="p">(</span><span class="n">A_bore</span><span class="o">*</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">))</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">eqn7</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">K_a</span><span class="o">/</span><span class="p">(</span><span class="n">A_bore</span><span class="o">*</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">Vo</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="o">-</span><span class="n">A_bore</span><span class="o">*</span><span class="n">K_a</span><span class="o">/</span><span class="p">(</span><span class="n">A_bore</span><span class="o">*</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">Vo</span><span class="p">)</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
 <span class="c1"># eqn2 = A_bore*P(t) - b*v(t) - Derivative(v(t),t)*m</span>
 <span class="c1"># display(eqn2)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="p">(</span><span class="n">solve</span><span class="p">(</span><span class="n">eqn7</span><span class="p">,</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1">#sub 7 into 1</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 8:&#39;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">K_adiabatic</span><span class="o">/</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">Derivative</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">m</span><span class="p">)</span>
+<span class="n">eqn8</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eqn7</span><span class="p">,</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">Derivative</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">m</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eqn8</span><span class="p">)</span>
 
 <span class="c1">#write in terms of x(t)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">Function</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 8:&#39;</span><span class="p">)</span>
-<span class="n">eqn8</span> <span class="o">=</span> <span class="p">(</span><span class="n">K_adiabatic</span><span class="o">/</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">Derivative</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">Derivative</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">m</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">eqn8</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 9:&#39;</span><span class="p">)</span>
+<span class="n">eqn9</span> <span class="o">=</span> <span class="n">eqn8</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">Integral</span><span class="p">(</span><span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">):</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">v</span><span class="p">(</span><span class="n">t</span><span class="p">):</span> <span class="n">Derivative</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)})</span>  
+<span class="n">display</span><span class="p">(</span><span class="n">eqn9</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13461,7 +13445,7 @@ $\displaystyle - A_{bore} P{\left(t \right)} + F{\left(t \right)}$
 
 
 <div class="output_latex output_subarea ">
-$\displaystyle - \frac{A_{bore} K_{adiabatic}}{V{\left(t \right)}} + F{\left(t \right)}$
+$\displaystyle - \frac{A_{bore} K_{a}}{V{\left(t \right)}} + F{\left(t \right)}$
 </div>
 
 </div>
@@ -13485,7 +13469,7 @@ $\displaystyle - \frac{A_{bore} K_{adiabatic}}{V{\left(t \right)}} + F{\left(t \
 
 
 <div class="output_latex output_subarea ">
-$\displaystyle - A_{bore} \int v{\left(t \right)}\, dt + V{\left(t \right)}$
+$\displaystyle - A_{bore} \int v{\left(t \right)}\, dt + Vo + V{\left(t \right)}$
 </div>
 
 </div>
@@ -13509,7 +13493,7 @@ $\displaystyle - A_{bore} \int v{\left(t \right)}\, dt + V{\left(t \right)}$
 
 
 <div class="output_latex output_subarea ">
-$\displaystyle - \frac{K_{adiabatic}}{\int v{\left(t \right)}\, dt} + F{\left(t \right)}$
+$\displaystyle - \frac{A_{bore} K_{a}}{A_{bore} \int v{\left(t \right)}\, dt - Vo} + F{\left(t \right)}$
 </div>
 
 </div>
@@ -13533,7 +13517,7 @@ $\displaystyle - \frac{K_{adiabatic}}{\int v{\left(t \right)}\, dt} + F{\left(t 
 
 
 <div class="output_latex output_subarea ">
-$\displaystyle \frac{K_{adiabatic}}{\int v{\left(t \right)}\, dt} - b v{\left(t \right)} - m \frac{d}{d t} v{\left(t \right)}$
+$\displaystyle \frac{A_{bore} K_{a}}{A_{bore} \int v{\left(t \right)}\, dt - Vo} - b v{\left(t \right)} - m \frac{d}{d t} v{\left(t \right)}$
 </div>
 
 </div>
@@ -13544,7 +13528,7 @@ $\displaystyle \frac{K_{adiabatic}}{\int v{\left(t \right)}\, dt} - b v{\left(t 
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>eqn 8:
+<pre>eqn 9:
 </pre>
 </div>
 </div>
@@ -13557,7 +13541,180 @@ $\displaystyle \frac{K_{adiabatic}}{\int v{\left(t \right)}\, dt} - b v{\left(t 
 
 
 <div class="output_latex output_subarea ">
-$\displaystyle \frac{K_{adiabatic}}{x{\left(t \right)}} - b \frac{d}{d t} x{\left(t \right)} - m \frac{d^{2}}{d t^{2}} x{\left(t \right)}$
+$\displaystyle \frac{A_{bore} K_{a}}{A_{bore} x{\left(t \right)} - Vo} - b \frac{d}{d t} x{\left(t \right)} - m \frac{d^{2}}{d t^{2}} x{\left(t \right)}$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#seperate out my x(t) from the constant so I can write it as a non-homogenous equation easier</span>
+
+<span class="c1">#take alpha = -Vo/A</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">)</span>
+<span class="n">eqn10</span> <span class="o">=</span> <span class="n">K_a</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">Derivative</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">m</span><span class="o">*</span><span class="n">Derivative</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 10:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eqn10</span><span class="p">)</span>
+
+<span class="c1">#multiply through to coerce function into standard form</span>
+<span class="n">eqn11</span> <span class="o">=</span> <span class="n">eqn10</span><span class="o">*</span><span class="p">(</span><span class="n">alpha</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;eqn 11:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="n">eqn11</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>eqn 10:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\displaystyle \frac{K_{a}}{\alpha + x{\left(t \right)}} - b \frac{d}{d t} x{\left(t \right)} - m \frac{d^{2}}{d t^{2}} x{\left(t \right)}$
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>eqn 11:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\displaystyle K_{a} - \left(\alpha + x{\left(t \right)}\right) \left(b \frac{d}{d t} x{\left(t \right)} + m \frac{d^{2}}{d t^{2}} x{\left(t \right)}\right)$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&#39;&#39;&#39;solve equation numerically.</span>
+<span class="sd">v(t) = x&#39;(t)</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1">#solve eqn11 in terms of the double derivative</span>
+<span class="n">eqn12</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eqn11</span><span class="p">,</span> <span class="n">Derivative</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eqn12</span><span class="p">)</span>
+
+<span class="c1">#I actually want to see where A_bore and Vo end up in this form</span>
+<span class="n">eqn13</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">eqn9</span><span class="p">,</span> <span class="n">Derivative</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eqn13</span><span class="p">)</span>
+
+
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">odeint</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">Ka</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="mi">30</span>
+    <span class="n">xdot</span> <span class="o">=</span> <span class="p">[[],[]]</span>
+    <span class="n">xdot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dy</span>
+    <span class="n">xdot</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ka</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">dy</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">alpha</span> <span class="o">+</span> <span class="n">y</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">xdot</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">time</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">z2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;g-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">z2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\displaystyle \frac{K_{a} - \alpha b \frac{d}{d t} x{\left(t \right)} - b x{\left(t \right)} \frac{d}{d t} x{\left(t \right)}}{m \left(\alpha + x{\left(t \right)}\right)}$
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\displaystyle \frac{A_{bore} K_{a} - A_{bore} b x{\left(t \right)} \frac{d}{d t} x{\left(t \right)} + Vo b \frac{d}{d t} x{\left(t \right)}}{m \left(A_{bore} x{\left(t \right)} - Vo\right)}$
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[104]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&lt;matplotlib.lines.Line2D at 0x207e1b57c48&gt;]</pre>
 </div>
 
 </div>
